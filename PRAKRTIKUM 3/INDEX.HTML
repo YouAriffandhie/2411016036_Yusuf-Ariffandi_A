@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My To-Do List</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="controls">
+        <select id="theme-selector">
+            <option value="white">White</option>
+            <option value="light-blue">Light Blue</option>
+            </select>
+        
+        <button id="increase-font">Increase Font Size</button>
+        <button id="decrease-font">Decrease Font Size</button>
+        
+        <button id="toggle-dark-mode">Toggle Dark Mode</button>
+        
+        <select id="font-selector">
+            <option value="Verdana">Verdana</option>
+            <option value="Arial">Arial</option>
+            </select>
+    </div>
+
+    <div class="container">
+        <h1>My To-Do List</h1>
+        <div class="input-row">
+            <input type="text" id="new-task-input" placeholder="Add a new task...">
+            <button id="add-task-btn">Add</button>
+        </div>
+        <ul id="task-list">
+            </ul>
+    </div>
+
+    <script src="resp.js"></script>
+</body>
+</html>
