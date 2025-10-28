@@ -1,35 +1,53 @@
-/* Reset dasar */
+
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Background dan layout utama */
 body {
-  background-color: #f3f4f6;
+  background: #f3f4f6;
   display: flex;
   justify-content: center;
   padding: 40px 20px;
 }
 
-/* Kontainer utama */
+.dock_atas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(90deg, #1e3a8a, #a23bf6);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+  z-index: 1000;
+}
+
+/* Kontainer utama (kompensasi dock atas) */
 .container {
   width: 400px;
   text-align: center;
+  margin-top: 88px;
 }
 
-/* Avatar/Profile Picture */
-.profile-pic img {
-  width: 200px;
-  border-radius: 50%;
-  border: 4px solid #3b82f6;
+/* Avatar */
+.foto img {
+  width: 50%;
+  border-radius: 0;
+  border: 10px solid #fff;
+   border-image: linear-gradient(#3b82f6, #9333ea) 1;
   margin-bottom: 20px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-/* Kartu umum (About, Contact) */
-.card {
+.kotak_pertama {
   background: #fff;
   border-radius: 12px;
   padding: 20px;
@@ -38,77 +56,34 @@ body {
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Judul bagian */
+.kotak_hobi {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+  text-align: left;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.kotaklagi {
+  margin-top: 20px;
+  background: #fff;
+  border-radius: 10px;
+  padding: 7px;
+  margin-bottom: 20px;
+  text-align: left;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  border-left: 3px solid #7e1fd6;
+
+}
+
 .card h2 {
   color: #1e3a8a;
   margin-bottom: 10px;
+  font-size: 18px;
 }
 
-/* Teks umum */
-.card p {
-  color: #333;
-  line-height: 1.5;
-  font-size: 15px;
-}
-
-/* Link */
 a {
-  color: #3b82f6;
+  color: #950bb1;
   text-decoration: none;
 }
-
-a:hover {
-  text-decoration: underline;
-}
-
-/* ---- STYLING TAMBAHAN UNTUK PROJECTS ---- */
-.project-card {
-  position: relative;
-  border-left: 6px solid #3b82f6; /* aksen biru di kiri */
-  padding-left: 16px;
-}
-
-.project-item {
-  background: #f9fafb;
-  border-radius: 8px;
-  padding: 10px 12px;
-  margin-bottom: 10px;
-  box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.05);
-  transition: all 0.2s ease-in-out;
-}
-
-.project-item:hover {
-  background: #eef6ff;
-  transform: translateX(3px);
-}
-
-/* Gaya untuk judul proyek */
-.project-title {
-  color: #3b82f6;
-  font-weight: bold;
-}
-
-.top-dock {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 64px;
-  background: linear-gradient(90deg, #1e3a8a, #3b82f6);
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 600;
-  letter-spacing: 0.2px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
-  z-index: 1000;
-}
-
-
-.container {
-  width: 400px;
-  text-align: center;
-  margin-top: 88px;
-}
-// ...existing code...
