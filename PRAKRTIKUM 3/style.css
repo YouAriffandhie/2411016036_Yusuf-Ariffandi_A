@@ -1,6 +1,5 @@
 /* style.css */
 :root {
-    /* Variabel Tema Default (Light/White) */
     --bg-color: white;
     --text-color: black;
     --primary-color: #4a90e2; /* Contoh warna tombol biru */
@@ -24,7 +23,7 @@ body {
 body.dark-mode {
     --bg-color: #1a1a1a;
     --text-color: #f0f0f0;
-    --primary-color: #7952b3; /* Warna tombol Dark Mode yang berbeda */
+    --primary-color: #493939; /* Warna tombol Dark Mode yang berbeda */
 }
 
 /* Gaya untuk kontainer dan elemen lainnya */
@@ -58,12 +57,60 @@ body.dark-mode {
     color: white;
     border: none;
     cursor: pointer;
+    font-size: var(--base-font-size);
+    margin-left: 10px;
 }
 
 #task-list {
     list-style: none;
     padding: 0;
 }
+#task-list li {
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+    text-align: left;
+}
+.delete-btn {
+    float: right;
+    background-color: rgb(255, 0, 0);
+    color: rgb(0, 0, 0);
+    border: none;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+.edit {
+    float: right;
+    background-color: rgb(0, 123, 255);
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-right: 10px;
+}
 
-/* Gaya untuk item tugas */
-/* ... */
+.finish-btn {
+    float: right;
+    background-color: rgb(0, 255, 0);
+    color: rgb(0, 0, 0);
+    border: none;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-right: 10px;
+    
+} 
+
+@media (max-width: 480px) {
+  .task-input input[type="text"],
+  .task-input button,
+  .controls select,
+  .controls button {
+    width: 100%;
+    font-size: 1rem;
+  }
+
+}
