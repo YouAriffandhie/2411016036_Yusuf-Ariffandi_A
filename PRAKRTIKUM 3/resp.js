@@ -1,5 +1,4 @@
-// script.js
-
+// ...existing code...
 document.addEventListener('DOMContentLoaded', () => {
     const body = document.body;
     const taskList = document.getElementById('task-list');
@@ -32,17 +31,98 @@ document.addEventListener('DOMContentLoaded', () => {
         const listItem = document.createElement('li');
         listItem.innerHTML = `
             <span>${taskText}</span>
-            <button class="delete-btn">Delete</button>
+            <button class="delete-btn">X</button>
+            <button class="edit">Edit</button>
+            <button class="finish-btn">Finish</button>
         `;
         
-        listItem.querySelector('.delete-btn').addEventListener('click', () => {
+        // Tombol Finish (fungsi centang / toggle selesai)
+        const finishBtn = listItem.querySelector('.finish-btn');
+        finishBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            listItem.classList.toggle('completed');
+            const isCompleted = listItem.classList.contains('completed');
+            const spanOrInput = listItem.querySelector('span') || listItem.querySelector('input');
+
+            // Update tombol dan gaya teks
+            finishBtn.textContent = isCompleted ? '✔' : 'Finish';
+            if (spanOrInput) {
+                if (isCompleted) {
+                    spanOrInput.style.textDecoration = 'line-through';
+                    spanOrInput.style.opacity = '0.7';
+                } else {
+                    spanOrInput.style.textDecoration = '';
+                    spanOrInput.style.opacity = '';
+                }
+            }
+        });
+
+        // Tombol Delete (hindari bubbling)
+        listItem.querySelector('.delete-btn').addEventListener('click', (e) => {
+            e.stopPropagation();
             listItem.remove();
         });
 
-        // Logika untuk menandai tugas selesai (opsional, bisa ditambah checkbox)
-        listItem.addEventListener('click', () => {
-            // listItem.classList.toggle('completed'); 
+        // Tombol Edit / Save
+        const editBtn = listItem.querySelector('.edit');
+        editBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const currentSpan = listItem.querySelector('span');
+
+            // Jika sedang mode "Edit" => ubah span menjadi input
+            if (editBtn.textContent.trim().toLowerCase() === 'edit') {
+                const input = document.createElement('input');
+                input.type = 'text';
+                input.value = currentSpan.textContent;
+                // jaga style jika sudah completed
+                if (listItem.classList.contains('completed')) {
+                    input.style.textDecoration = 'line-through';
+                    input.style.opacity = '0.7';
+                }
+                // ganti span dengan input
+                listItem.replaceChild(input, currentSpan);
+                editBtn.textContent = 'Save';
+                input.focus();
+
+                // Simpan saat tekan Enter
+                input.addEventListener('keydown', (ev) => {
+                    if (ev.key === 'Enter') {
+                        saveEdit();
+                    }
+                });
+
+                function saveEdit() {
+                    const newVal = input.value.trim();
+                    if (newVal === '') return; // jangan simpan kosong
+                    const span = document.createElement('span');
+                    span.textContent = newVal;
+                    // jaga style jika sudah completed
+                    if (listItem.classList.contains('completed')) {
+                        span.style.textDecoration = 'line-through';
+                        span.style.opacity = '0.7';
+                    }
+                    listItem.replaceChild(span, input);
+                    editBtn.textContent = 'Edit';
+                }
+            } else {
+                // Mode Save: ambil input dan simpan
+                const inputEl = listItem.querySelector('input');
+                if (!inputEl) return;
+                const newVal = inputEl.value.trim();
+                if (newVal === '') return;
+                const span = document.createElement('span');
+                span.textContent = newVal;
+                if (listItem.classList.contains('completed')) {
+                    span.style.textDecoration = 'line-through';
+                    span.style.opacity = '0.7';
+                }
+                listItem.replaceChild(span, inputEl);
+                editBtn.textContent = 'Edit';
+            }
         });
+
+        // Hapus click listener yang sebelumnya menandai seluruh li; sekarang fitur selesai via finish-btn
+        // let listItem click remains unused
 
         taskList.appendChild(listItem);
         newTaskInput.value = '';
@@ -54,10 +134,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     function setTheme(theme) {
-        // Hapus class tema yang ada, lalu tambahkan yang baru (kecuali 'dark-mode')
+    
         body.className = body.className.split(' ').filter(c => c !== 'dark-mode').join(' ');
         if (body.classList.contains('dark-mode')) {
-             body.classList.remove('dark-mode'); // Pastikan Dark Mode mati jika memilih tema Light 
+             body.classList.remove('dark-mode');
         }
 
         switch(theme) {
@@ -109,4 +189,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Inisialisasi awal
     setTheme(themeSelector.value);
     fontSelector.value = 'Verdana'; // Atur font default di awal
+
+    
 });
+// ...existing code...
