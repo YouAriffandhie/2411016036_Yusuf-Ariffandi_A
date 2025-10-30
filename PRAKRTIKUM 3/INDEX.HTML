@@ -7,21 +7,25 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  
     <div class="controls">
         <select id="theme-selector">
             <option value="white">White</option>
             <option value="light-blue">Light Blue</option>
-            </select>
+        </select>
         
-        <button id="increase-font">Increase Font Size</button>
-        <button id="decrease-font">Decrease Font Size</button>
+        <button id="increase-font">+</button>
+        <button id="decrease-font">-</button>
         
-        <button id="toggle-dark-mode">Toggle Dark Mode</button>
+        <button id="toggle-dark-mode">🌙/☀️</button>
         
         <select id="font-selector">
             <option value="Verdana">Verdana</option>
             <option value="Arial">Arial</option>
-            </select>
+            <option value="Times New Roman">Times New Roman</option>
+            <option value="Courier New">Courier New</option>
+            <option value="Georgia">Georgia</option>
+        </select>
     </div>
 
     <div class="container">
@@ -30,8 +34,7 @@
             <input type="text" id="new-task-input" placeholder="Add a new task...">
             <button id="add-task-btn">Add</button>
         </div>
-        <ul id="task-list">
-            </ul>
+        <ul id="task-list"></ul>
     </div>
 
     <script src="resp.js"></script>
